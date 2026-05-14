@@ -1,6 +1,6 @@
 [![FINOS - Incubating](https://cdn.jsdelivr.net/gh/finos/contrib-toolbox@master/images/badge-incubating.svg)](https://community.finos.org/docs/governance/lifecycle-stages/incubating)
 
-# fluxnova-modeler-plugins
+# Fluxnova Modeler Plugins
 
 Short blurb about what your project does.
 
