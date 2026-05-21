@@ -1,0 +1,70 @@
+{
+  "name": "code-editor-plugin",
+  "version": "1.0.0",
+  "description": "Code editor experience integrating linting with ESLint and CodeNarc locally",
+  "main": "index.js",
+  "files": [
+    "dist",
+    "index.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/finos/fluxnova-plugins.git"
+  },
+  "contributors": [
+    "Contributors to the Fluxnova Project"
+  ],
+  "keywords": [
+    "fluxnova",
+    "modeler",
+    "plugin"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "all": "run-s lint test build",
+    "build": "webpack --mode production && cd dist/node_modules/npm-groovy-lint && npm install --production --ignore-scripts",
+    "build:bundle": "npm run build && npm run bundle",
+    "build:dev": "webpack --mode development",
+    "bundle": "zip -r code-editor-plugin.zip dist/ index.js",
+    "dev": "webpack -w",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "jest",
+    "test:auto": "jest --watch",
+    "test:auto-silent": "jest --watch --silent"
+  },
+  "dependencies": {
+    "@bpmn-io/properties-panel": "^3.25.1",
+    "bpmn-js": "^18.1.2",
+    "bpmn-js-properties-panel": "^5.30.1",
+    "camunda-modeler-plugin-helpers": "^5.1.0",
+    "camunda-modeler-webpack-plugin": "^0.1.0",
+    "monaco-editor": "^0.52.2",
+    "monaco-editor-webpack-plugin": "^7.1.0",
+    "npm-groovy-lint": "^16.2.0",
+    "path-browserify": "^1.0.1",
+    "ws": "^8.18.3"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.26.0",
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/react": "^14.2.1",
+    "@testing-library/user-event": "^14.5.2",
+    "babel-jest": "^29.7.0",
+    "babel-plugin-inline-react-svg": "^2.0.2",
+    "copy-webpack-plugin": "^12.0.2",
+    "css-loader": "^7.1.2",
+    "eslint": "^9.18.0",
+    "eslint-plugin-bpmn-io": "^2.1.0",
+    "eslint-plugin-jest": "^28.11.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "jest-transform-stub": "^2.0.0",
+    "jiti": "^2.5.1",
+    "min-dom": "^5.1.1",
+    "npm-run-all2": "^8.0.4",
+    "raw-loader": "^4.0.2",
+    "style-loader": "^4.0.0",
+    "webpack-cli": "^6.0.1"
+  }
+}
