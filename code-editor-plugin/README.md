@@ -24,7 +24,7 @@ It offers:
 **Note**: For the first time, you will need to create the resources/plugins folders manually:\
 `mkdir -p /path-to-modeler/resources/plugins`
 
-You can use `./build.sh` to automate the above steps
+You can use `./build.sh` to automate the above steps.
 You will need to provide permissions to whatever app/IDE you're using to run those scripts (System Settings -> Privacy & Security -> App Management)
 
 **Note**: `./build.sh` script creates a symlink from the plugin to the modeler, so it only needs to be run once.
