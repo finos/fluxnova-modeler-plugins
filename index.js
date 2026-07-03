@@ -3,5 +3,5 @@
 module.exports = {
   name: 'Agent Subprocess Plugin',
   style: './client/styles.css',
-  script: './client/client.bundle.js'
+  script: './dist/client.js'
 };
