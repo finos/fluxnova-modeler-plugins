@@ -2,7 +2,7 @@
 
 module.exports = {
   panel: `
-    <div id="agent-custom-properties">
+    <div class="agent-custom-properties">
       <div class="agent-panel-title">Agent Configuration</div>
       <div class="agent-fields-container"></div>
     </div>`,
@@ -43,5 +43,5 @@ module.exports = {
         <rect x="0" y="0" width="28" height="20" rx="4" fill="#7c3aed" />
         <text x="14" y="14.5" font-family="Arial" font-size="12" font-weight="bold" fill="#fff" text-anchor="middle">AI</text>
       </svg>
-    </div>`
+    </div>`,
 };

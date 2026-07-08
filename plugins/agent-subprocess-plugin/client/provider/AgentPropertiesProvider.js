@@ -44,7 +44,7 @@ function AgentPropertiesProvider(eventBus, modeling, moddle) {
 
       // Skip re-injection when the panel is already present for this element so
       // that focused inputs are not disrupted while the user is editing values.
-      const existing = document.getElementById('agent-custom-properties');
+      const existing = document.querySelector('.agent-custom-properties');
       if (existing && existing.getAttribute('data-element-id') === element.id) {
         return;
       }
@@ -57,7 +57,7 @@ function AgentPropertiesProvider(eventBus, modeling, moddle) {
 AgentPropertiesProvider.$inject = [ 'eventBus', 'modeling', 'moddle' ];
 
 function removeCustomPanel() {
-  const existing = document.getElementById('agent-custom-properties');
+  const existing = document.querySelector('.agent-custom-properties');
   if (existing) existing.remove();
 }
 
