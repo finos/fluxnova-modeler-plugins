@@ -21,7 +21,7 @@ AgentReplaceMenuProvider.$inject = [
   'bpmnReplace',
 ];
 
-AgentReplaceMenuProvider.prototype.getPopupMenuEntries = (element) => {
+AgentReplaceMenuProvider.prototype.getPopupMenuEntries = function(element) {
   const {
     _modeling: modeling,
     _bpmnFactory: bpmnFactory,
