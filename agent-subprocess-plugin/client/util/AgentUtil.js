@@ -54,7 +54,7 @@ function removeAgentExtensions(bo) {
   const extensionElements = bo.get('extensionElements');
   if (!extensionElements) return;
 
-  const values   = extensionElements.get('values');
+  const values = extensionElements.get('values');
   const filtered = values.filter(v => v.$type !== 'agent:Config' && v.$type !== 'agent:Context');
   values.splice(0, values.length, ...filtered);
 }

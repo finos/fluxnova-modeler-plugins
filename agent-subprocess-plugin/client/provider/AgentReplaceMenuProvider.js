@@ -3,10 +3,10 @@
 const AgentUtil = require('../util/AgentUtil');
 
 function AgentReplaceMenuProvider(
-  popupMenu,
-  modeling,
-  bpmnFactory,
-  bpmnReplace
+    popupMenu,
+    modeling,
+    bpmnFactory,
+    bpmnReplace,
 ) {
   this._modeling = modeling;
   this._bpmnFactory = bpmnFactory;

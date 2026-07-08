@@ -68,11 +68,12 @@ AgentCreateAppendProvider.prototype.getPopupMenuEntries = function(element) {
       rank: 800,
 
       action: {
+
         // Create (palette): manual placement on canvas.
         // Append (context pad, click): auto-place next to the source element.
         click: isCreate
           ? (event) => self._createStart(event)
-          : ()      => self._appendClick(element),
+          : () => self._appendClick(element),
 
         // Drag always starts manual placement; include source hint when appending.
         dragstart: isCreate

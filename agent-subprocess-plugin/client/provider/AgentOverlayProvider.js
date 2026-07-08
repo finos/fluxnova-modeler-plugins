@@ -34,7 +34,7 @@ function syncOverlay(element, overlays) {
   }
 }
 
-AgentOverlayProvider.$inject = ['eventBus', 'overlays', 'elementRegistry'];
+AgentOverlayProvider.$inject = [ 'eventBus', 'overlays', 'elementRegistry' ];
 
 function addAiOverlay(element, overlays) {
   if (!overlays) return;

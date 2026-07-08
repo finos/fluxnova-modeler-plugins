@@ -18,7 +18,7 @@ registerBpmnJSModdleExtension({
   types: [
     {
       name: 'Config',
-      superClass: ['Element'],
+      superClass: [ 'Element' ],
       properties: [
         { name: 'provider', isAttr: true, type: 'String' },
         { name: 'model', isAttr: true, type: 'String' },
@@ -27,13 +27,13 @@ registerBpmnJSModdleExtension({
     },
     {
       name: 'Context',
-      superClass: ['Element'],
-      properties: [{ name: 'variables', type: 'agent:Variable', isMany: true }],
+      superClass: [ 'Element' ],
+      properties: [ { name: 'variables', type: 'agent:Variable', isMany: true } ],
     },
     {
       name: 'Variable',
-      superClass: ['Element'],
-      properties: [{ name: 'name', isAttr: true, type: 'String' }],
+      superClass: [ 'Element' ],
+      properties: [ { name: 'name', isAttr: true, type: 'String' } ],
     },
   ],
 });
@@ -45,8 +45,8 @@ registerBpmnJSPlugin({
     'agentPropertiesProvider',
     'agentOverlayProvider',
   ],
-  agentCreateAppendProvider: ['type', AgentCreateAppendProvider],
-  agentReplaceMenuProvider: ['type', AgentReplaceMenuProvider],
-  agentPropertiesProvider: ['type', AgentPropertiesProvider],
-  agentOverlayProvider: ['type', AgentOverlayProvider],
+  agentCreateAppendProvider: [ 'type', AgentCreateAppendProvider ],
+  agentReplaceMenuProvider: [ 'type', AgentReplaceMenuProvider ],
+  agentPropertiesProvider: [ 'type', AgentPropertiesProvider ],
+  agentOverlayProvider: [ 'type', AgentOverlayProvider ],
 });
