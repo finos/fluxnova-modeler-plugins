@@ -15,6 +15,11 @@ website/.docusaurus
 .env.test.local
 .env.production.local
 
+.kiro
+dist
+node_modules
+
+
 website/npm-debug.log*
 website/yarn-debug.log*
 website/yarn-error.log*
