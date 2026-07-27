@@ -1,0 +1,2 @@
+# Needed for Jenkins build
+!package-lock.json
