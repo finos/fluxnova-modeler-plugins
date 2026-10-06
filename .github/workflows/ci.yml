@@ -1,0 +1,76 @@
+name: CI Workflow
+
+on:
+  push:
+    branches:
+      - '**'
+    paths:
+      - 'plugins/code-editor-plugin/**'
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build & Bundle
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: plugins/code-editor-plugin
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+          cache-dependency-path: plugins/code-editor-plugin/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run CI checks
+        run: npm run all
+      
+      - name: Bundle plugin
+        run: npm run bundle
+
+      - name: Resolve ZIP artifact
+        id: zip
+        run: |
+          ZIPS=$(find . -maxdepth 1 -name "*.zip")
+          COUNT=$(echo "$ZIPS" | sed '/^$/d' | wc -l)
+          if [ "$COUNT" -ne 1 ]; then 
+            echo "Expected exactly one ZIP file, but found $COUNT"
+            exit 1
+          fi
+
+      - name: Rename zip file
+        id: rename
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          REF="${GITHUB_REF_NAME}"
+          BUILD="${GITHUB_RUN_NUMBER}"
+
+          if [[ "$REF" == "main" ]]; then
+            NEW_NAME="code-editor-plugin-v${VERSION}-main.zip"
+          elif [[ "$REF" == "develop" ]]; then
+            NEW_NAME="code-editor-plugin-v${VERSION}-b${BUILD}.zip"
+          elif [[ "$REF" == release/* ]]; then
+            NEW_NAME="code-editor-plugin-v${VERSION}-rc${BUILD}.zip"
+          else 
+            BRANCH="${REF//\//-}"
+            NEW_NAME="code-editor-plugin-v${VERSION}-${BRANCH}-b${BUILD}.zip"
+          fi
+
+          mv code-editor-plugin.zip "$NEW_NAME"
+          echo "artifact_name=${NEW_NAME%.zip}" >> "$GITHUB_OUTPUT"
+          echo "zip_path=plugins/code-editor-plugin/$NEW_NAME" >> "$GITHUB_OUTPUT"
+          
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.rename.outputs.artifact_name }}
+          path: ${{ steps.rename.outputs.zip_path }}
+          if-no-files-found: error

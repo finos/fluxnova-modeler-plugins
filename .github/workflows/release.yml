@@ -1,0 +1,117 @@
+name: Release Workflow
+
+on:
+  push:
+    tags:
+      - 'code-editor-plugin/v*'
+  workflow_dispatch:
+
+jobs:
+  prepare:
+    name: Prepare
+    runs-on: ubuntu-latest
+
+    outputs: 
+      version: ${{ steps.version.outputs.version }}
+      tag: ${{ steps.version.outputs.tag }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Extract version from tag or package.json
+        id: version
+        run: | 
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            VERSION=$(node -p "require('./plugins/code-editor-plugin/package.json').version")
+            TAG="code-editor-plugin/v$VERSION"
+            else 
+                VERSION="${GITHUB_REF_NAME#code-editor-plugin/v}"
+                TAG="${GITHUB_REF_NAME}"
+          fi
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+
+  build:
+    name: Build & Bundle
+    needs: prepare
+    runs-on: ubuntu-latest
+    
+    outputs:
+      artifact_name: ${{ steps.rename.outputs.artifact_name }}
+      zip_path: ${{ steps.zip.outputs.path }}
+    
+    defaults:
+      run:
+        working-directory: plugins/code-editor-plugin
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+          cache-dependency-path: plugins/code-editor-plugin/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run CI checks
+        run: npm run all
+      
+      - name: Bundle plugin
+        run: npm run bundle
+
+      - name: Resolve ZIP artifact
+        id: zip
+        run: |
+          ZIPS=$(find . -maxdepth 1 -name "*.zip")
+          COUNT=$(echo "$ZIPS" | sed '/^$/d' | wc -l)
+          if [ "$COUNT" -ne 1 ]; then 
+            echo "Expected exactly one ZIP file, but found $COUNT"
+            exit 1
+          fi
+      
+      - name: Rename zip file
+        id: rename
+        run: |
+          NEW_NAME="code-editor-plugin-v${{ needs.prepare.outputs.version }}.zip"
+          mv code-editor-plugin.zip "$NEW_NAME"
+          echo "artifact_name=${NEW_NAME%.zip}" >> "$GITHUB_OUTPUT"
+          echo "zip_path=plugins/code-editor-plugin/$NEW_NAME" >> "$GITHUB_OUTPUT"
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.rename.outputs.artifact_name }}
+          path: ${{ steps.rename.outputs.zip_path }}
+          if-no-files-found: error
+
+  release:
+    name: Create Release
+    needs: 
+      - prepare
+      - build
+    runs-on: ubuntu-latest
+
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/code-editor-plugin/v')
+    
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ needs.build.outputs.artifact_name }}
+      
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ needs.prepare.outputs.tag }}" \
+            "${{ needs.build.outputs.artifact_name }}.zip" \
+            --repo "${GITHUB_REPOSITORY}" \
+            --title "Code Editor Plugin v${{ needs.prepare.outputs.version }}" \
+            --generate-notes

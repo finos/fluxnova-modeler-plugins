@@ -2,50 +2,48 @@
 
 # Fluxnova Modeler Plugins
 
-Short blurb about what your project does.
+This repository contains installable plugins, plugin source code, and supporting resources for extending Fluxnova Modeler.
 
-## Installation
+## Installing Plugins
 
-OS X & Linux:
+The complete install guide lives in [docs/installing-plugins.md](docs/installing-plugins.md).
+
+Use that guide for:
+
+- Platform-specific installation steps for macOS, Windows, and Linux
+- CI artifact and release download guidance
+- Local build instructions for plugins that are not produced by CI
+- Verification and troubleshooting steps
+
+Quick path for local testing of `code-editor-plugin`:
 
 ```sh
-npm install my-crazy-module --save
+cd plugins/code-editor-plugin
+npm install
+npm run build
 ```
 
-Windows:
-
-```sh
-edit autoexec.bat
-```
-
-## Usage example
-
-A few motivating and useful examples of how your project can be used. Spice this up with code blocks and potentially screenshots / videos ([LiceCap](https://www.cockos.com/licecap/) is great for this kind of thing).
-
-_For more examples and usage, please refer to the [Wiki][wiki]._
+Then copy the built plugin folder contents into the appropriate `resources/plugins` directory for your Fluxnova Modeler installation.
 
 ## Development setup
 
-Describe how to install all development dependencies and how to run an automated test-suite of some kind. Potentially do this for multiple platforms.
+Install dependencies and build the plugin you want to work on.
 
 ```sh
-make install
-npm test
+cd plugins/code-editor-plugin
+npm install
+npm run build
 ```
 
-## Roadmap
-
-List the roadmap steps; alternatively link the Confluence Wiki page where the project roadmap is published.
-
-1. Item 1
-2. Item 2
-3. ....
+Run tests from the relevant plugin directory as needed.
 
 ## Contributing
+
 For any questions, bugs or feature requests please open an [issue](https://github.com/finos/fluxnova-modeler-plugins/issues)
 For anything else please send an email to {project mailing list}.
 
 To submit a contribution:
+
 1. Fork it (<https://github.com/finos/fluxnova-modeler-plugins/fork>)
 2. Create your feature branch (`git checkout -b feature/fooBar`)
 3. Read our [contribution guidelines](CONTRIBUTING.md) and [Community Code of Conduct](https://www.finos.org/code-of-conduct)
