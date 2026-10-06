@@ -4,6 +4,15 @@
 .env.development.local
 .env.test.local
 .env.production.local
+
+.kiro
+dist
+node_modules
+
+
+website/npm-debug.log*
+website/yarn-debug.log*
+website/yarn-error.log*
 .idea
 .nyc_output/
 .vscode

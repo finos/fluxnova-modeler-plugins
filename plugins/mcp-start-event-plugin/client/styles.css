@@ -1,0 +1,222 @@
+/* MCP Tool Start Event - AI Icon for popup menu */
+.bpmn-icon-mcp-tool-start::before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="none" stroke="%23333" stroke-width="2"/><text x="16" y="20" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="%23333" text-anchor="middle">AI</text></svg>');
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+}
+/* MCP Tool Plugin Styles */
+
+/* Form Styles */
+.mcp-form-row {
+    margin-bottom: 10px;
+}
+
+.mcp-form-label {
+    display: block;
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 4px;
+    font-weight: 500;
+}
+
+.mcp-form-input,
+.mcp-form-textarea {
+    width: 100%;
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 13px;
+    box-sizing: border-box;
+}
+
+.mcp-form-textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* AI Badge */
+.mcp-ai-badge {
+    position: absolute;
+    pointer-events: none;
+}
+
+/* Custom Properties Panel */
+#mcp-custom-properties {
+    padding: 12px;
+    border-top: 2px solid #52b415;
+    background: #f5f5f5;
+    margin: 10px 0;
+}
+
+.mcp-panel-title {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 12px;
+    color: #52b415;
+}
+
+/* Checkbox Row */
+.mcp-checkbox-row {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mcp-checkbox-label {
+    font-size: 12px;
+    color: #555;
+    font-weight: 500;
+}
+
+.mcp-checkbox {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+/* Parameters Section */
+.mcp-parameters-container {
+    margin-top: 15px;
+    border-top: 1px solid #ddd;
+    padding-top: 12px;
+}
+
+.mcp-parameters-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.mcp-parameters-title {
+    font-size: 12px;
+    color: #555;
+    font-weight: 500;
+}
+
+.mcp-btn-add {
+    padding: 4px 10px;
+    font-size: 11px;
+    background: #52b415;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.mcp-parameters-empty {
+    font-size: 11px;
+    color: #999;
+    font-style: italic;
+    padding: 8px 0;
+}
+
+.mcp-parameter-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.mcp-parameter-name {
+    flex: 1;
+    padding: 5px 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+.mcp-parameter-type {
+    width: 90px;
+    padding: 5px 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+.mcp-btn-remove {
+    padding: 4px 8px;
+    font-size: 11px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* Return Variables Section */
+.mcp-returnVariables-container {
+    margin-top: 15px;
+    border-top: 1px solid #ddd;
+    padding-top: 12px;
+}
+
+.mcp-returnVariables-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.mcp-returnVariables-title {
+    font-size: 12px;
+    color: #555;
+    font-weight: 500;
+}
+
+.mcp-returnVariables-list {
+    /* List container - inherits from parent */
+}
+
+.mcp-returnVariables-empty {
+    font-size: 11px;
+    color: #999;
+    font-style: italic;
+    padding: 8px 0;
+}
+
+.mcp-returnVariable-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.mcp-returnVariable-name {
+    flex: 1;
+    padding: 5px 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+.mcp-returnVariable-type {
+    width: 90px;
+    padding: 5px 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+.mcp-btn-add-return-variable {
+    padding: 4px 10px;
+    font-size: 11px;
+    background: #52b415;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.mcp-btn-remove-return-variable {
+    padding: 4px 8px;
+    font-size: 11px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
