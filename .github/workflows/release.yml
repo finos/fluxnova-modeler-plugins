@@ -6,10 +6,16 @@ on:
       - 'code-editor-plugin/v*'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   prepare:
     name: Prepare
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
 
     outputs: 
       version: ${{ steps.version.outputs.version }}
@@ -30,10 +36,19 @@ jobs:
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "tag=$TAG" >> "$GITHUB_OUTPUT"
 
+  license-check:
+    name: License Check
+    uses: ./.github/workflows/license-scanning.yml
+
   build:
     name: Build & Bundle
-    needs: prepare
+    needs:
+      - prepare
+      - license-check
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
     
     outputs:
       artifact_name: ${{ steps.rename.outputs.artifact_name }}

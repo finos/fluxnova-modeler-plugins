@@ -3,10 +3,16 @@ name: CI Workflow
 on:
   push:
     branches:
-      - '**'
-    paths:
-      - 'plugins/code-editor-plugin/**'
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   build:
